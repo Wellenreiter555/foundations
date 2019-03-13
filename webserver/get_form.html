@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> My First Application</title>
+    <link rel="stylesheet" type="text/css" href="">
+</head>
+
+<body>
+    <h1> The GET Test </h1>
+    <p>Test what get will do.</p>
+    So whats your Name? <br>
+
+
+    <form method="get" action="/Scripts/parseForm.py">
+    <input type="text"  id="Name" name="first_name" placeholder="Enter Name here">
+    <button type="submit" value="Send"> Submit here</button>
+    </form>
+
+    <p> Expected answer: Scripts/parseForm.py?first_name=lucca </p>
+
+</body>
+
+</html>

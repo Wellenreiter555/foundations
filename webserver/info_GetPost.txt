@@ -1,0 +1,48 @@
+
+
+The POST Method
+POST is used to send data to a server to create/update a resource.
+
+The data sent to the server with POST is stored in the request body of the HTTP request:
+
+POST /test/demo_form.php HTTP/1.1
+Host: w3schools.com
+name1=value1&name2=value2
+
+Some other notes on POST requests:
+
+POST requests are never cached
+POST requests do not remain in the browser history
+POST requests cannot be bookmarked
+POST requests have no restrictions on data length
+
+================================================================================================
+From Wikipedia, the free encyclopedia
+
+In computing, POST is a request method supported by HTTP used by the World Wide Web. By design, the POST request method requests that a web server accepts the data enclosed in the body of the request message, most likely for storing it. It is often used when uploading a file or when submitting a completed web form.
+================================================================================================
+
+
+
+------------------------------------------------------------------------------------------------
+
+The GET Method
+GET is used to request data from a specified resource.
+
+Note that the query string (name/value pairs) is sent in the URL of a GET request:
+
+/test/demo_form.php?name1=value1&name2=value2
+Some other notes on GET requests:
+
+GET requests can be cached
+GET requests remain in the browser history
+GET requests can be bookmarked
+GET requests should never be used when dealing with sensitive data
+GET requests have length restrictions
+GET requests is only used to request data (not modify)
+
+================================================================================================
+From Wikipedia, the free encyclopedia
+
+In contrast, the HTTP GET request method retrieves information from the server. As part of a GET request, some data can be passed within the URL's query string, specifying (for example) search terms, date ranges, or other information that defines the query.
+================================================================================================
