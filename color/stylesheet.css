@@ -1,0 +1,30 @@
+h1 {
+	font-size: 80px;
+	font-family: Courier New;
+	margin-top: 11%;
+	text-shadow: 2px 2px grey;
+}
+button {
+	color: blue;
+}
+p {
+	font-family: Courier New;
+	font-size: 20px;
+	text-shadow: 2px 2px grey;
+}
+button {
+	border-radius: 55px;
+	color: white;
+	background-color: green;
+	border-style: none;
+	font-size: 20px;
+}
+body {
+	text-align: center;
+}
+input {
+	font-size: 20px;
+}
+#BP {
+	background-image: url("https://newevolutiondesigns.com/images/freebies/colorful-background-4.jpg")
+}
