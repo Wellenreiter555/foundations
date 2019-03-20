@@ -23,7 +23,3 @@ print("staring CGI server at localhost:8000")
 
 # run the server. To kill it, issue Ctrl + C
 httpd.serve_forever()
-
-
-
-
