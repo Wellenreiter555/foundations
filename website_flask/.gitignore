@@ -1,4 +1,8 @@
-venv/
+var/
+bin/
+include/
+lib/
+
 
 *.pyc
 __pycache__/
