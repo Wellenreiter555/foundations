@@ -1,0 +1,22 @@
+{% block header %}
+  <h1>{% block title %}Flaskr works{% endblock %}</h1>
+  {% if g.user %}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% for post in posts %}
+    <article class="post">
+      <header><p>SportInside</p>
+        <div>
+          <h1>{{ post['title'] }}</h1>
+          <div class="about">{{ post['HEADLINE'] }}</div>
+        </div>
+      </header>
+      <p class="body">{{ post['BODYTEXT'] }}</p>
+    </article>
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+{% endblock %}
