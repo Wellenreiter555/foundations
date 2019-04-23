@@ -1,22 +1,143 @@
-{% block header %}
-  <h1>{% block title %}Flaskr works{% endblock %}</h1>
-  {% if g.user %}
-  {% endif %}
-{% endblock %}
+<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SportInside</title>
 
-{% block content %}
-  {% for post in posts %}
-    <article class="post">
-      <header><p>SportInside</p>
-        <div>
-          <h1>{{ post['title'] }}</h1>
-          <div class="about">{{ post['HEADLINE'] }}</div>
-        </div>
-      </header>
-      <p class="body">{{ post['BODYTEXT'] }}</p>
-    </article>
-    {% if not loop.last %}
-      <hr>
+<body>
+
+<!-- ### NAV starts here ### -->
+
+    <nav>
+
+        <ul>
+            
+            <li>SportInside</li>
+            
+            <li>HOME</li>
+            
+            <li>CONTACT</li>
+            
+            <li>MISSION</li>
+        
+        </ul>
+    
+    </nav>
+
+
+<!-- ### Landing starts here ### -->
+
+
+    <div class="parallax">
+
+    
+    {% for post in posts %}
+    
+        {% if post == posts[0] %}
+    
+            <div class="article-img-textbox">
+    
+                <h1>{{ post[0] }}</h1>
+                
+                <p>{{ post[2] }}</p>
+    
+            </div>
+
+            <div class="fun">
+
+            </div>
+    
+    </div>
+
+
+<!-- ### Grid starts here ### -->
+
+
+    <div class="wrapper">
+    
+    {% else %}
+      
+        <article>
+
+            <div class="parent">
+        
+                <div class="child">
+              
+                    <h2 class="head">{{ post[0] }}</h2>
+                    
+                    <p class="bodytext">{{ post[2] }}</p>
+
+
+                    <button id="myBtn">+</button>
+                    
+                    <div id="myModal" class="modal">
+                    
+                        <div class="modal-content">
+                    
+                        <span class="close">&times;</span>
+                        
+                        <p class="impo">{{ post[1] }}</p>
+
+                        </div>
+                    
+                    </div>
+                    
+                </div>
+   
+            </div>
+
+        </article>
+
     {% endif %}
-  {% endfor %}
-{% endblock %}
+    
+    {% endfor %}
+    
+    </div>  
+
+    
+<!-- ### Footer starts here ### -->
+
+
+    <footer>
+    
+        <img class="fopic" src="/static/pic/footer.png">
+      
+          <div class="copyright">
+        
+              <p> &copy 2019 | SportInside Management Group | JP for the win | Contact | FBGM | #GOAL </p>
+      
+          </div>
+    
+    </footer>  
+
+<script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+</body>
+
+
+
+

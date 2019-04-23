@@ -15,9 +15,11 @@ bp = Blueprint('blog', __name__)
 
 @bp.route('/')
 def index():
+    #clear_tables()
+    #get_names()
     db = get_db()
     posts = db.execute(
-        'SELECT HEADLINE, BODYTEXT FROM SCRAPER'
+        'SELECT HEADLINE, BODYTEXT, TEASER FROM SCRAPER'
     ).fetchall()
     return render_template('blog/index.html', posts=posts)
 
@@ -93,10 +95,11 @@ def get_article(link_list):
         #img_link = get_img_link(html)
         content = get_content(html)
         headline = get_headline(html)
+        teaser = get_teaser(html)
         
         #print(img_link)
         #break
-        write_to_database(headline, content)
+        write_to_database(headline, content, teaser)
 
 
 def get_headline(html):
@@ -119,31 +122,36 @@ def get_content(html):
             continue
         #print(paragraph)
         paragraphs.append(paragraph)
-        joined_list=paragraph.join(paragraphs)
+        joined_list = paragraph.join(paragraphs)
     #print(paragraphs)
     return joined_list
 
-#def get_img_link(html):
-#    for img in html.find_all('img'):
-#        if "picture__image" in str(img):
-#            return str(img)
-#
-#            picture = img
-#            src = img.get("srcset")
-#            image = src
-#           return image
+def get_teaser(html):
+    for p in html.find_all('p'):
+        teaser = p.text 
+        return teaser.split(".", 1)[0]
 
-def write_to_database(HEADLINE, BODYTEXT):
+
+def clear_tables():
+    conn = sqlite3.connect('instance/flaskr.sqlite')
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM SCRAPER;")
+    cursor.close()
+    conn.commit()
+
+def write_to_database(HEADLINE, BODYTEXT, TEASER):
 
     conn = sqlite3.connect('instance/flaskr.sqlite')
     cursor = conn.cursor()
     print("Link successfully added")
 
     #cursor.execute('''CREATE TABLE SCRAPER
-    #     (HEADLINE           TEXT    NOT NULL,
-    #      BODYTEXT           TEXT    NOT NULL)''')
+    #         (HEADLINE           TEXT    NOT NULL,
+    #          BODYTEXT           TEXT    NOT NULL,
+    #          TEASER             TEXT    NOT NULL)''')
 #conn.execute("insert into crawled (title, body) values (?, ?);",(title, body))
-    cursor.execute("INSERT INTO SCRAPER (HEADLINE,BODYTEXT) VALUES (?, ?);",(HEADLINE, BODYTEXT))
+    #cursor.execute("INSERT INTO SCRAPER (HEADLINE,BODYTEXT) VALUES (?, ?);",(HEADLINE, BODYTEXT))
+    cursor.execute("INSERT OR REPLACE INTO SCRAPER(HEADLINE,BODYTEXT,TEASER) VALUES(?, ?, ?);", (HEADLINE,BODYTEXT,TEASER))
 #cursor.execute("INSERT INTO SCRAPER (ID,HEADLINE,BODYTEXT) \
 #      VALUES (2, 'get_headline', 'get_content')");
 #cursor.execute("INSERT INTO SCRAPER (ID,HEADLINE,BODYTEXT) \
@@ -152,4 +160,4 @@ def write_to_database(HEADLINE, BODYTEXT):
     conn.commit()
 
 
-get_names()
+#get_names()
