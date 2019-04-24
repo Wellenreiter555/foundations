@@ -32,16 +32,16 @@
     {% for post in posts %}
     
         {% if post == posts[0] %}
-    
+            
+            <div class="fun">
+            
             <div class="article-img-textbox">
-    
-                <h1>{{ post[0] }}</h1>
                 
-                <p>{{ post[2] }}</p>
+                <h1 >{{ post[0] }}</h1>
+                
+                <p class="textfirst">{{ post[2] }}</p>
     
             </div>
-
-            <div class="fun">
 
             </div>
     
@@ -64,7 +64,6 @@
                     <h2 class="head">{{ post[0] }}</h2>
                     
                     <p class="bodytext">{{ post[2] }}</p>
-
 
                     <button id="myBtn">+</button>
                     

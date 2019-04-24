@@ -1,5 +1,5 @@
-body,html{
-}
+
+
 body{
 	background-color: #FFFDFD;
 	height: 100%;
@@ -60,30 +60,43 @@ nav {
 
 	.article-img-textbox {
 		font-family: Helvetica;
-		width: 35%;
-		position: absolute;
-		top: 25.5vw;
-		left: 8%;
 		color: white;
+		opacity: 1;
+		position: relative;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%,-50%);
+		width: 90%;
 	}
 		h1{
 			font-size: 2.1vw;
 			border-bottom: 1px solid yellow;
 			padding-bottom: 0.5vw;
+			width: 90%;
 		}
+
+
 		p{
 			margin-top: 0.5vw; 
 			font-size: 1.25vw;
-			max-height: 10vw;
+			/*max-height: 10vw;*/
 		}
 		.fun{
 			top: 23.5vw;
 			position: absolute;
 			color: white;
 			width: 45%;
-			background-color: yellow;
-			filter: opacity(0.1);
+			background-color: rgba(255,253,84,0.1);
 			height: 16.5vw;
+			border-radius: 5px;
+			left: -800px;
+			animation-name: slidin;
+			animation-duration: 1s;
+			animation-fill-mode: forwards;
+			animation-timing-function: ease-out;
+		}
+		@keyframes slidin{
+			100%{left: 0px;}
 		}
 		.fun_well{
 			position: absolute;
@@ -96,25 +109,25 @@ nav {
 
 .wrapper {
   	display: grid;
-  	grid-template-columns: repeat(3, 1fr);
+  	grid-template-columns: repeat(4, 1fr);
   	margin: 5vw 9vw 2vw 9vw;
   	grid-gap: 3vw;
 }	
 	.parent {
 		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	  	background: #081F2C;
-	  	border-radius: 3vw;
+	  	border-radius: 15px;
 	  	color: white;
 	  	padding: 1.5vw;
 	  	height: 25vw;
-	  	border: 1px solid;
-	  	border-color: #081F2C;
+	  	/*border: 1px solid;
+	  	border-color: #081F2C;*/
 		}
 		.child{
 			font-family: Helvetica;
 			}
 			.head{
-				padding: 1vw 0.5vw 0.5vw 0.5vw;
+				padding: 1vw 0.5vw 1vw 0.5vw;
 				font-size: 1.4vw;
 				border-bottom: 1px solid;
 				border-color: #081F2C;
@@ -122,24 +135,24 @@ nav {
 				top: 0;
 				height: 7vw;
 				overflow: hidden;
+				text-align: justify;
 			}
 			.bodytext{
 				margin-top: 1vw;
 				font-size: 1.2vw;
-				text-align: left;
+				text-align: justify;
+				height: 11vw;
 				overflow: auto;
-				height: 8vw;
 				border-radius: 5px;
 				border-top: 1px solid white;
-				padding: 2vw 0.25vw 2vw 0.25vw;
+				padding: 1vw 1vw 1vw 1vw;
 				border-bottom: 1px solid white;
 			}
 			button{
 				margin-left: 40%;
-				margin-top: 0%;
 				font-size: 2vw;
-				width: 4vw;
-				height: 4vw;
+				width: 3vw;
+				height: 3vw;
 				border-radius: 50px;
 				background-color: #081F2C;
 				color: yellow;
@@ -154,9 +167,10 @@ nav {
 	*.parent:hover{
 		color: #081F2C;
 	}
+	
 	div.parent:hover {
   		background-color: white;
-	}*/
+	}
 	
 
 footer{
@@ -208,9 +222,43 @@ footer{
 	padding: 20px;
 	border: 1px solid yellow;
 	width: 70%;
-	border-radius: 30px;
+	border-radius: 10px;
 	max-height: 80%;
 }
 .close{
 	display: none;
 }
+
+
+@media only screen and (max-width: 1200px) {
+  .article-img-textbox {}
+  	p{font-size: 15px;}
+
+  .wrapper{
+  	display: grid;
+  	grid-template-columns: repeat(3, 1fr);
+  	margin: 8vw 9vw 2vw 9vw;
+  	grid-gap: 4vw;
+  }
+  	.parent{height: 30vw;}
+  	.child{}
+  	.head{font-size: 20px; padding: 12px; height: 8vw;}
+  	.bodytext{font-size: 15px; padding: 12px; height: 8vw; padding-bottom: 50px;}
+}
+
+@media only screen and (max-width: 600px){
+	.article-img-textbox{}
+		p{display: none;}
+		h1{font-size: 15px;}
+	.fun{height: 20vw;}
+	nav{display: none;}
+
+	.wrapper{
+		display: grid;
+		grid-template-columns: repeat(1, 1fr);
+		margin: 4vw 9vw 0vw 9vw;
+}
+	.parent{height: 20vw;}
+	.head{height: 15vw;}
+	.bodytext{display: none;}
+	#mybtn{display: none;}
