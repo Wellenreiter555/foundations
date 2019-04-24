@@ -3,140 +3,92 @@
 <title>SportInside</title>
 
 <body>
-
-<!-- ### NAV starts here ### -->
-
     <nav>
-
-        <ul>
-            
+        <ul>   
             <li>SportInside</li>
-            
             <li>HOME</li>
-            
             <li>CONTACT</li>
-            
             <li>MISSION</li>
-        
         </ul>
-    
     </nav>
 
-
-<!-- ### Landing starts here ### -->
-
-
     <div class="parallax">
-
-    
     {% for post in posts %}
-    
         {% if post == posts[0] %}
-            
             <div class="fun">
-            
-            <div class="article-img-textbox">
-                
-                <h1 >{{ post[0] }}</h1>
-                
-                <p class="textfirst">{{ post[2] }}</p>
-    
+                <div class="article-img-textbox">
+                    <h1 >{{ post[0] }}</h1>
+                    <p class="textfirst">{{ post[2] }}</p>
+                </div>
             </div>
-
-            </div>
-    
+        <img class="bg-img mySlides" src="/static/pic/aa.jpg" style="height: 59vw;">
+        <img class="bg-img mySlides" src="/static/pic/aaa.jpg">
+        <img class="bg-img mySlides" src="/static/pic/aaaa.jpg" style="height: 59vw;">
+        <img class="bg-img mySlides" src="/static/pic/aaaaa.jpeg" style="height: 59vw;">
     </div>
 
-
-<!-- ### Grid starts here ### -->
-
-
-    <div class="wrapper">
-    
-    {% else %}
-      
-        <article>
-
-            <div class="parent">
-        
-                <div class="child">
-              
-                    <h2 class="head">{{ post[0] }}</h2>
-                    
-                    <p class="bodytext">{{ post[2] }}</p>
-
-                    <button id="myBtn">+</button>
-                    
-                    <div id="myModal" class="modal">
-                    
-                        <div class="modal-content">
-                    
-                        <span class="close">&times;</span>
-                        
-                        <p class="impo">{{ post[1] }}</p>
-
-                        </div>
-                    
+    <div class="bg">
+        <div class="wrapper">    
+        {% else %}
+            <article>
+                <div class="parent">
+                    <div class="child">
+                        <h2 class="head">{{ post[0] }}</h2>
+                        <p class="bodytext">{{ post[2] }}</p>
+                        <button onclick="openMo({{ post[3] }})" id="myBtn">+</button>
+                            <div id="{{ post[3] }}" class="modal">
+                            <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <p class="impo">{{ post[1] }}</p>
+                            </div>
                     </div>
-                    
                 </div>
-   
-            </div>
-
-        </article>
-
-    {% endif %}
-    
-    {% endfor %}
-    
-    </div>  
-
-    
-<!-- ### Footer starts here ### -->
-
+            </article>
+        {% endif %}
+        {% endfor %}
+        </div>  
+    </div>
 
     <footer>
-    
         <img class="fopic" src="/static/pic/footer.png">
-      
-          <div class="copyright">
-        
+            <div class="copyright">
               <p> &copy 2019 | SportInside Management Group | JP for the win | Contact | FBGM | #GOAL </p>
-      
-          </div>
-    
+            </div>
     </footer>  
 
 <script>
-// Get the modal
-var modal = document.getElementById('myModal');
 
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+function openMo(id){
+    console.log(id)
+    var modal = document.getElementById(id);
+    modal.style.display = "block";
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
+    window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
 }
+
+}
+
+var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none"; 
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1} 
+  slides[slideIndex-1].style.display = "block"; 
+  setTimeout(showSlides, 3000); // Change image every 2 seconds
+}
+
 </script>
 
 </body>
-
 
 
 

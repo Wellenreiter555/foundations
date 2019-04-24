@@ -15,11 +15,11 @@ bp = Blueprint('blog', __name__)
 
 @bp.route('/')
 def index():
-    clear_tables()
-    get_names()
+    #clear_tables()
+    #get_names()
     db = get_db()
     posts = db.execute(
-        'SELECT HEADLINE, BODYTEXT, TEASER FROM SCRAPER'
+        'SELECT HEADLINE, BODYTEXT, TEASER, ID FROM SCRAPER'
     ).fetchall()
     return render_template('blog/index.html', posts=posts)
 
@@ -120,10 +120,8 @@ def get_content(html):
             continue
         elif none_sense2 in paragraph:
             continue
-        #print(paragraph)
         paragraphs.append(paragraph)
         joined_list = paragraph.join(paragraphs)
-    #print(paragraphs)
     return joined_list
 
 def get_teaser(html):
@@ -144,20 +142,9 @@ def write_to_database(HEADLINE, BODYTEXT, TEASER):
     conn = sqlite3.connect('instance/flaskr.sqlite')
     cursor = conn.cursor()
     print("Link successfully added")
-
-    #cursor.execute('''CREATE TABLE SCRAPER
-    #         (HEADLINE           TEXT    NOT NULL,
-    #          BODYTEXT           TEXT    NOT NULL,
-    #          TEASER             TEXT    NOT NULL)''')
-#conn.execute("insert into crawled (title, body) values (?, ?);",(title, body))
-    #cursor.execute("INSERT INTO SCRAPER (HEADLINE,BODYTEXT) VALUES (?, ?);",(HEADLINE, BODYTEXT))
     cursor.execute("INSERT OR REPLACE INTO SCRAPER(HEADLINE,BODYTEXT,TEASER) VALUES(?, ?, ?);", (HEADLINE,BODYTEXT,TEASER))
-#cursor.execute("INSERT INTO SCRAPER (ID,HEADLINE,BODYTEXT) \
-#      VALUES (2, 'get_headline', 'get_content')");
-#cursor.execute("INSERT INTO SCRAPER (ID,HEADLINE,BODYTEXT) \
-#      VALUES (3, 'get_headline', 'get_content')");
+
     cursor.close()
     conn.commit()
 
-
-#get_names()
+    
