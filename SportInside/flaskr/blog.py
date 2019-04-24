@@ -15,8 +15,8 @@ bp = Blueprint('blog', __name__)
 
 @bp.route('/')
 def index():
-    #clear_tables()
-    #get_names()
+    clear_tables()
+    get_names()
     db = get_db()
     posts = db.execute(
         'SELECT HEADLINE, BODYTEXT, TEASER FROM SCRAPER'
