@@ -82,7 +82,7 @@ def get_names():
                     link_list.append(full_link)
                     print(count)
                     count +=1
-            if count == 10:
+            if count == 13:
                 break
     #print (link_list)
     get_article(link_list)
@@ -120,8 +120,10 @@ def get_content(html):
             continue
         elif none_sense2 in paragraph:
             continue
+        #print(paragraph)
         paragraphs.append(paragraph)
         joined_list = paragraph.join(paragraphs)
+    #print(paragraphs)
     return joined_list
 
 def get_teaser(html):
@@ -142,9 +144,20 @@ def write_to_database(HEADLINE, BODYTEXT, TEASER):
     conn = sqlite3.connect('instance/flaskr.sqlite')
     cursor = conn.cursor()
     print("Link successfully added")
-    cursor.execute("INSERT OR REPLACE INTO SCRAPER(HEADLINE,BODYTEXT,TEASER) VALUES(?, ?, ?);", (HEADLINE,BODYTEXT,TEASER))
 
+    #cursor.execute('''CREATE TABLE SCRAPER
+    #         (HEADLINE           TEXT    NOT NULL,
+    #          BODYTEXT           TEXT    NOT NULL,
+    #          TEASER             TEXT    NOT NULL)''')
+#conn.execute("insert into crawled (title, body) values (?, ?);",(title, body))
+    #cursor.execute("INSERT INTO SCRAPER (HEADLINE,BODYTEXT) VALUES (?, ?);",(HEADLINE, BODYTEXT))
+    cursor.execute("INSERT OR REPLACE INTO SCRAPER(HEADLINE,BODYTEXT,TEASER) VALUES(?, ?, ?);", (HEADLINE,BODYTEXT,TEASER))
+#cursor.execute("INSERT INTO SCRAPER (ID,HEADLINE,BODYTEXT) \
+#      VALUES (2, 'get_headline', 'get_content')");
+#cursor.execute("INSERT INTO SCRAPER (ID,HEADLINE,BODYTEXT) \
+#      VALUES (3, 'get_headline', 'get_content')");
     cursor.close()
     conn.commit()
 
-    
+
+#get_names()
